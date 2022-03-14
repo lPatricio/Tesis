@@ -5,7 +5,7 @@ bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *
 			*errorRetornado=100;
 			double* vectorDeErrores;
 			
-			double*  Xauxiliar; 
+			double*  Xsgte; 
 			  
 			int i,j;
 			
@@ -18,15 +18,15 @@ bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *
 					aux=0;
 					
 					for(j=0;j<COLUMNASMATRIZ;j++){
-						if(i!=j){
+						if(i!=j)
 							aux=aux+ A[i][j]*X[j];
-						}
+						
 					}
 					
 					aux=( B[i]-aux )/A[i][i];	
 
 					vectorDeErrores[i]=(aux-X[i]);
-					Xauxiliar[i]=aux;
+					Xsgte[i]=aux;
 				}
 			
 				
@@ -34,7 +34,7 @@ bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *
 	             *errorRetornado=calculoError(vectorDeErrores);     
 			
 				for(i=0;i<ELEMENTOSVECTOR;i++){
-					X[i]=Xauxiliar[i];
+					X[i]=Xsgte[i];
 				}
 			}
 		
