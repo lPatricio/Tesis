@@ -1,6 +1,6 @@
-bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *iteracionesRealizadas){
+bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *iteraciones){
 		   
-		    *iteracionesRealizadas=0;   
+		    *iteraciones=0;   
 			double aux;
 			*errorRetornado=100;
 			double* vectorDeErrores;
@@ -10,9 +10,9 @@ bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *
 			int i,j;
 			
 			asignarMemoriaDinamicaVector(&vectorDeErrores);
-			asignarMemoriaDinamicaVector(&Xauxiliar);
+			asignarMemoriaDinamicaVector(&Xsgte);
 			
-			while(*iteracionesRealizadas<CANTIDADMAXIMADEITERACIONES && *errorRetornado>=COTADEERROR){
+			while(*iteraciones<ITERACIONESMAXIMAS && *errorRetornado>=COTADEERROR){
 				
 				for(i=0;i<FILASMATRIZ;i++){
 					aux=0;
@@ -30,7 +30,7 @@ bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *
 				}
 			
 				
-				 *iteracionesRealizadas=*iteracionesRealizadas+1;
+				 *iteraciones=*iteraciones+1;
 	             *errorRetornado=calculoError(vectorDeErrores);     
 			
 				for(i=0;i<ELEMENTOSVECTOR;i++){
@@ -38,7 +38,7 @@ bool  metodoDeJacobi(double** A,double* B,double* X,double *errorRetornado,int *
 				}
 			}
 		
-			if(*iteracionesRealizadas<CANTIDADMAXIMADEITERACIONES)
+			if(*iteraciones<ITERACIONESMAXIMAS)
 				return true;
 			
 			return false;
